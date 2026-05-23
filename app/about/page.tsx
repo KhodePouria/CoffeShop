@@ -9,20 +9,20 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen pb-20 animate-fade-in">
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="max-w-md mx-auto px-4 py-4">
-          <div className="flex items-center justify-between mb-2">
-            <h1 className="text-2xl font-bold">درباره ما</h1>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between gap-3 mb-2">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-balance">درباره ما</h1>
             <ThemeToggle />
           </div>
-          <p className="text-sm text-muted-foreground text-center">امروز از ما دیدن کنید</p>
+          <p className="text-sm sm:text-base text-muted-foreground text-center text-balance">امروز از ما دیدن کنید</p>
         </div>
       </header>
 
-      <main className="max-w-md mx-auto py-6 px-4">
+      <main className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         {/* Restaurant Info */}
-        <div className="mb-6">
-          <h2 className="text-xl font-bold mb-4">رستوران خوشمزه</h2>
-          <p className="text-muted-foreground leading-relaxed mb-6">
+        <div className="mb-8">
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4">رستوران خوشمزه</h2>
+          <p className="text-muted-foreground leading-relaxed mb-6 text-balance">
             به رستوران خوشمزه خوش آمدید، جایی که تعالی آشپزی با مهمان‌نوازی گرم ملاقات می‌کند. ما به ارائه مواد تازه و
             محلی که با اشتیاق و خلاقیت تهیه شده‌اند، افتخار می‌کنیم. منوی ما شامل انتخاب متنوعی از غذاهای طراحی شده برای
             لذت بردن هر سلیقه‌ای است.
@@ -46,11 +46,11 @@ export default function AboutPage() {
         </Card>
 
         {/* Contact Information */}
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <Card>
             <CardContent className="p-4">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                   <MapPin className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1">
@@ -73,7 +73,7 @@ export default function AboutPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                   <Phone className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1">
@@ -92,7 +92,7 @@ export default function AboutPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                   <Mail className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1">
@@ -111,7 +111,7 @@ export default function AboutPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                   <Clock className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1">

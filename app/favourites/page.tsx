@@ -24,26 +24,28 @@ export default function FavouritesPage() {
   return (
     <div className="min-h-screen pb-20 animate-fade-in">
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="max-w-md mx-auto px-4 py-4">
-          <div className="flex items-center justify-between mb-2">
-            <h1 className="text-2xl font-bold">علاقه‌مندی‌ها</h1>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between gap-3 mb-2">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-balance">علاقه‌مندی‌ها</h1>
             <ThemeToggle />
           </div>
-          <p className="text-sm text-muted-foreground text-center">موارد ذخیره شده شما</p>
+          <p className="text-sm sm:text-base text-muted-foreground text-center text-balance">موارد ذخیره شده شما</p>
         </div>
       </header>
 
-      <main className="max-w-md mx-auto py-6 px-4">
+      <main className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         {favouriteItems.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-center">
+          <div className="flex flex-col items-center justify-center py-16 text-center max-w-2xl mx-auto">
             <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
               <Heart className="h-8 w-8 text-muted-foreground" />
             </div>
-            <h2 className="text-xl font-semibold mb-2">هنوز علاقه‌مندی ندارید</h2>
-            <p className="text-muted-foreground">با ضربه زدن روی آیکون قلب، موارد را به علاقه‌مندی‌های خود اضافه کنید</p>
+            <h2 className="text-lg sm:text-xl font-semibold mb-2">هنوز علاقه‌مندی ندارید</h2>
+            <p className="text-muted-foreground text-balance">
+              با ضربه زدن روی آیکون قلب، موارد را به علاقه‌مندی‌های خود اضافه کنید
+            </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {favouriteItems.map((item) => (
               <MenuItemCard key={item.id} item={item} onClick={() => handleItemClick(item)} />
             ))}

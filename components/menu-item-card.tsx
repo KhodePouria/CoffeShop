@@ -32,7 +32,7 @@ export function MenuItemCard({ item, onClick }: MenuItemCardProps) {
       className="overflow-hidden cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl group"
       onClick={onClick}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+      <div className="relative aspect-4/3 overflow-hidden bg-muted">
         <Image
           src={item.image || "/placeholder.svg"}
           alt={item.name}
@@ -50,14 +50,16 @@ export function MenuItemCard({ item, onClick }: MenuItemCardProps) {
           />
         </Button>
       </div>
-      <CardContent className="p-4">
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <h3 className="font-semibold text-lg leading-tight">{item.name}</h3>
-          <span className="text-primary font-bold text-lg whitespace-nowrap" dir="ltr">
+      <CardContent className="p-3 sm:p-4">
+        <div className="flex items-start justify-between gap-3 mb-2 min-w-0">
+          <h3 className="font-semibold text-base sm:text-lg leading-tight line-clamp-1 min-w-0">
+            {item.name}
+          </h3>
+          <span className="text-primary font-bold text-base sm:text-lg whitespace-nowrap" dir="ltr">
             ${item.price.toFixed(2)}
           </span>
         </div>
-        <p className="text-sm text-muted-foreground line-clamp-2">{item.description}</p>
+        <p className="text-sm text-muted-foreground line-clamp-2 wrap-break-word">{item.description}</p>
       </CardContent>
     </Card>
   )

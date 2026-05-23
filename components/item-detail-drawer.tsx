@@ -30,7 +30,7 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent className="max-w-md mx-auto">
+      <DrawerContent className="max-w-2xl mx-auto w-full">
         <div className="relative">
           <Button
             variant="ghost"
@@ -41,7 +41,7 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
             <X className="h-5 w-5" />
           </Button>
 
-          <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+          <div className="relative aspect-video overflow-hidden bg-muted">
             <Image src={item.image || "/placeholder.svg"} alt={item.name} fill className="object-cover" />
           </div>
 

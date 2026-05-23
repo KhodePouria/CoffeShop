@@ -74,40 +74,43 @@ export function CategorySlider({ activeCategory, onCategoryClick }: CategorySlid
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-full rounded-none bg-gradient-to-l from-card to-transparent"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-full rounded-none bg-linear-to-l from-card to-transparent"
           onClick={() => scroll("right")}
         >
           <ChevronRight className="h-5 w-5" />
         </Button>
       )}
 
-      <div
-        ref={scrollContainerRef}
-        className="flex gap-2 overflow-x-auto scrollbar-hide px-4 py-3"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-      >
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            ref={activeCategory === category.id ? activeButtonRef : null}
-            onClick={() => onCategoryClick(category.id)}
-            className={`flex flex-col items-center gap-1 min-w-[80px] px-3 py-2 rounded-xl transition-all ${
-              activeCategory === category.id
-                ? "bg-primary text-primary-foreground shadow-lg scale-105"
-                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-            }`}
-          >
-            <span className="text-2xl">{category.icon}</span>
-            <span className="text-xs font-medium whitespace-nowrap">{category.name}</span>
-          </button>
-        ))}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-2 overflow-x-auto scrollbar-hide py-3 justify-start lg:justify-center"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              ref={activeCategory === category.id ? activeButtonRef : null}
+              onClick={() => onCategoryClick(category.id)}
+              className={`flex flex-col items-center gap-1 min-w-20 sm:min-w-24 px-2.5 sm:px-3 py-2 rounded-xl transition-all ${activeCategory === category.id
+                  ? "bg-primary text-primary-foreground shadow-lg scale-105"
+                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                }`}
+            >
+              <span className="text-2xl">{category.icon}</span>
+              <span className="text-[11px] sm:text-xs font-medium text-center leading-tight line-clamp-2 wrap-break-word">
+                {category.name}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {showLeftArrow && (
         <Button
           variant="ghost"
           size="icon"
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-full rounded-none bg-gradient-to-r from-card to-transparent"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-full rounded-none bg-linear-to-r from-card to-transparent"
           onClick={() => scroll("left")}
         >
           <ChevronLeft className="h-5 w-5" />

@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <body className={`antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <div className="max-w-md mx-auto bg-background min-h-screen">
+          <div className="min-h-screen bg-background">
             {children}
             <BottomNav />
           </div>
