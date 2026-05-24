@@ -48,7 +48,6 @@ export function CategorySlider({ activeCategory, onCategoryClick }: CategorySlid
       const containerWidth = container.offsetWidth
       const scrollLeft = container.scrollLeft
 
-      // Check if button is not fully visible
       if (buttonLeft < scrollLeft || buttonLeft + buttonWidth > scrollLeft + containerWidth) {
         container.scrollTo({
           left: buttonLeft - containerWidth / 2 + buttonWidth / 2,
@@ -69,40 +68,54 @@ export function CategorySlider({ activeCategory, onCategoryClick }: CategorySlid
   }
 
   return (
-    <div className="relative bg-card border-b border-border">
+    <div className="relative w-full bg-background/80 backdrop-blur-md border-b border-border/50">
       {showRightArrow && (
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-full rounded-none bg-linear-to-l from-card to-transparent"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-full rounded-none bg-gradient-to-l from-background/80 to-transparent hover:bg-transparent"
           onClick={() => scroll("right")}
         >
           <ChevronRight className="h-5 w-5" />
         </Button>
       )}
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8">
         <div
           ref={scrollContainerRef}
-          className="flex gap-2 overflow-x-auto scrollbar-hide py-3 justify-start lg:justify-center"
+          className="flex gap-4 overflow-x-auto scrollbar-hide py-5 justify-start lg:justify-center items-center"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              ref={activeCategory === category.id ? activeButtonRef : null}
-              onClick={() => onCategoryClick(category.id)}
-              className={`flex flex-col items-center gap-1 min-w-20 sm:min-w-24 px-2.5 sm:px-3 py-2 rounded-xl transition-all ${activeCategory === category.id
-                  ? "bg-primary text-primary-foreground shadow-lg scale-105"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                }`}
-            >
-              <span className="text-2xl">{category.icon}</span>
-              <span className="text-[11px] sm:text-xs font-medium text-center leading-tight line-clamp-2 wrap-break-word">
-                {category.name}
-              </span>
-            </button>
-          ))}
+          {categories.map((category) => {
+            const isActive = activeCategory === category.id;
+            return (
+              <button
+                key={category.id}
+                ref={isActive ? activeButtonRef : null}
+                onClick={() => onCategoryClick(category.id)}
+                style={{
+                  backgroundImage: `url(${category.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+                className={`relative shrink-0 flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm ${isActive ? "scale-105 shadow-md" : "hover:scale-105"
+                  }`}
+              >
+                <div className="absolute inset-0 bg-black/40 transition-colors duration-300 hover:bg-black/30" />
+
+                <span className="relative z-10 text-xs sm:text-sm font-bold text-white text-center leading-tight drop-shadow-md px-1 pb-1">
+                  {category.name}
+                </span>
+
+                <div
+                  className={`absolute bottom-1.5 left-1/2 -translate-x-1/2 h-1 rounded-full transition-all duration-300 z-10 ${isActive
+                    ? "w-6 bg-primary"
+                    : "w-1.5 bg-white/60"
+                    }`}
+                />
+              </button>
+            )
+          })}
         </div>
       </div>
 
@@ -110,7 +123,7 @@ export function CategorySlider({ activeCategory, onCategoryClick }: CategorySlid
         <Button
           variant="ghost"
           size="icon"
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-full rounded-none bg-linear-to-r from-card to-transparent"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-full rounded-none bg-gradient-to-r from-background/80 to-transparent hover:bg-transparent"
           onClick={() => scroll("left")}
         >
           <ChevronLeft className="h-5 w-5" />

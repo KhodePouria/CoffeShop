@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Heart } from "lucide-react"
 import { useFavourites } from "@/lib/favourites-store"
 import { Button } from "@/components/ui/button"
+import { toPersianDigits } from "@/lib/utils"
 
 interface MenuItemCardProps {
   item: MenuItem
@@ -55,8 +56,8 @@ export function MenuItemCard({ item, onClick }: MenuItemCardProps) {
           <h3 className="font-semibold text-base sm:text-lg leading-tight line-clamp-1 min-w-0">
             {item.name}
           </h3>
-          <span className="text-primary font-bold text-base sm:text-lg whitespace-nowrap" dir="ltr">
-            ${item.price.toFixed(2)}
+          <span className="text-primary font-bold text-base sm:text-lg whitespace-nowrap" dir="rtl">
+            {toPersianDigits(item.price.toFixed(2))} تومان
           </span>
         </div>
         <p className="text-sm text-muted-foreground line-clamp-2 wrap-break-word">{item.description}</p>

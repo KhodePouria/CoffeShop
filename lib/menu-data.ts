@@ -1,14 +1,18 @@
+
 import type { MenuItem, Category } from "./types"
 
 export const categories: Category[] = [
-  { id: "foods", name: "غذاها", icon: "🍽️" },
-  { id: "cold-drinks", name: "نوشیدنی‌های سرد", icon: "🥤" },
-  { id: "hot-drinks", name: "نوشیدنی‌های گرم", icon: "☕" },
-  { id: "desserts", name: "دسرها", icon: "🍰" },
-  { id: "coffee", name: "قهوه", icon: "☕" },
-  { id: "cold-coffee", name: "قهوه سرد", icon: "🧊" },
-  { id: "specials", name: "ویژه", icon: "⭐" },
+  { id: "foods", name: "غذاها", image: "/grilled-salmon-dish.jpg" },
+  { id: "cold-drinks", name: "نوشیدنی‌های سرد", image: "/fresh-lemonade-glass.jpg" },
+  { id: "hot-drinks", name: "نوشیدنی‌های گرم", image: "/hot-chocolate-mug.jpg" },
+  { id: "desserts", name: "دسرها", image: "/chocolate-lava-cake.png" },
+  { id: "coffee", name: "قهوه", image: "/latte-art.jpg" },
+  { id: "cold-coffee", name: "قهوه سرد", image: "/iced-latte.png" },
+  { id: "specials", name: "ویژه", image: "/gourmet-chef-special.jpg" },
 ]
+
+// menuItems remain the same...
+
 
 export const menuItems: MenuItem[] = [
   // Foods
