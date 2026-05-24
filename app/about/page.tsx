@@ -7,25 +7,23 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen pb-20 animate-fade-in">
+    <div className="min-h-screen pb-20 animate-fade-in" dir="rtl">
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-3 mb-2">
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-balance">درباره ما</h1>
             <ThemeToggle />
           </div>
-          <p className="text-sm sm:text-base text-muted-foreground text-center text-balance">امروز از ما دیدن کنید</p>
+          <p className="text-sm sm:text-base text-muted-foreground text-center text-balance">منتظر دیدار شما هستیم</p>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        {/* Restaurant Info */}
+        {/* Cafe Info */}
         <div className="mb-8">
-          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4">رستوران خوشمزه</h2>
-          <p className="text-muted-foreground leading-relaxed mb-6 text-balance">
-            به رستوران خوشمزه خوش آمدید، جایی که تعالی آشپزی با مهمان‌نوازی گرم ملاقات می‌کند. ما به ارائه مواد تازه و
-            محلی که با اشتیاق و خلاقیت تهیه شده‌اند، افتخار می‌کنیم. منوی ما شامل انتخاب متنوعی از غذاهای طراحی شده برای
-            لذت بردن هر سلیقه‌ای است.
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4">کافه دا</h2>
+          <p className="text-muted-foreground leading-relaxed mb-6 text-balance text-justify">
+            به کافه دا خوش آمدید؛ فضایی دنج و آرام در قلب شیراز و بلوار زند. ما با بهره‌گیری از دانه‌های قهوه باکیفیت و تخصصی، نوشیدنی‌های تازه و دسرهای دست‌ساز، در تلاشیم تا تجربه‌ای متفاوت و خاطره‌انگیز از دورهمی‌ها، قرارهای کاری و لحظات استراحت شما بسازیم.
           </p>
         </div>
 
@@ -33,7 +31,8 @@ export default function AboutPage() {
         <Card className="mb-6 overflow-hidden">
           <div className="relative aspect-video bg-muted">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9476519598093!2d-73.99185492346445!3d40.74844097138558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus"
+              /* این یک موقعیت تقریبی از بلوار زند شیراز است، می‌توانید آن را با لینک Embed دقیق کافه جایگزین کنید */
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13904.708892706325!2d52.540113!3d29.626645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fb2120000000001%3A0x1!2sZand%20Blvd%2C%20Shiraz%2C%20Fars%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -55,10 +54,10 @@ export default function AboutPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold mb-1">آدرس</h3>
-                  <p className="text-sm text-muted-foreground">خیابان آشپزی ۱۲۳، منطقه غذا، نیویورک، NY 10001</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">شیراز، بلوار زند، جنب بانک سامان، مجتمع پزشکی آراد</p>
                   <Button variant="link" className="h-auto p-0 mt-2 text-primary" asChild>
                     <a
-                      href="https://www.google.com/maps/search/?api=1&query=Empire+State+Building"
+                      href="https://www.google.com/maps/search/?api=1&query=Zand+Boulevard+Shiraz"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -79,10 +78,10 @@ export default function AboutPage() {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-1">تلفن</h3>
                   <p className="text-sm text-muted-foreground mb-2" dir="ltr">
-                    +1 (555) 123-4567
+                    071 3230 0000
                   </p>
                   <Button variant="link" className="h-auto p-0 text-primary" asChild>
-                    <a href="tel:+15551234567">تماس</a>
+                    <a href="tel:07132300000">تماس با کافه</a>
                   </Button>
                 </div>
               </div>
@@ -98,10 +97,10 @@ export default function AboutPage() {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-1">ایمیل</h3>
                   <p className="text-sm text-muted-foreground mb-2" dir="ltr">
-                    info@deliciousrestaurant.com
+                    info@cafeda.ir
                   </p>
                   <Button variant="link" className="h-auto p-0 text-primary" asChild>
-                    <a href="mailto:info@deliciousrestaurant.com">ارسال ایمیل</a>
+                    <a href="mailto:info@cafeda.ir">ارسال پیام</a>
                   </Button>
                 </div>
               </div>
@@ -118,21 +117,15 @@ export default function AboutPage() {
                   <h3 className="font-semibold mb-2">ساعات کاری</h3>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">دوشنبه - جمعه</span>
+                      <span className="text-muted-foreground">شنبه - چهارشنبه</span>
                       <span className="font-medium" dir="ltr">
-                        11:00 - 22:00
+                        09:00 - 20:00
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">شنبه</span>
+                      <span className="text-muted-foreground">پنج‌شنبه و جمعه</span>
                       <span className="font-medium" dir="ltr">
-                        10:00 - 23:00
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">یکشنبه</span>
-                      <span className="font-medium" dir="ltr">
-                        10:00 - 21:00
+                        09:00 - 14:00
                       </span>
                     </div>
                   </div>

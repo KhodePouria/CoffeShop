@@ -47,7 +47,7 @@ export function HomePageClient({ categories, menuItems }: HomePageClientProps) {
 
     return (
         <>
-            <div className="sticky top-24 z-30">
+            <div className="sticky top-19 z-30">
                 <CategorySlider activeCategory={activeCategory} onCategoryClick={handleCategoryClick} />
             </div>
 

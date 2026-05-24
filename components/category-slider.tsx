@@ -83,7 +83,7 @@ export function CategorySlider({ activeCategory, onCategoryClick }: CategorySlid
       <div className="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8">
         <div
           ref={scrollContainerRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide py-5 justify-start lg:justify-center items-center"
+          className="flex gap-4 overflow-x-auto scrollbar-hide py-3 justify-start lg:justify-center items-center"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {categories.map((category) => {
@@ -98,7 +98,7 @@ export function CategorySlider({ activeCategory, onCategoryClick }: CategorySlid
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
-                className={`relative shrink-0 flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm ${isActive ? "scale-105 shadow-md" : "hover:scale-105"
+                className={`relative shrink-0 flex flex-col items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm ${isActive ? "scale-105 shadow-md" : "hover:scale-105"
                   }`}
               >
                 <div className="absolute inset-0 bg-black/40 transition-colors duration-300 hover:bg-black/30" />

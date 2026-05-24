@@ -4,51 +4,63 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light theme — palette: #1FBFB8 #7EE7DA #EAFBF7 #F2C14E #1F2937 */
-  --background: oklch(0.975 0.025 185);
-  /* #EAFBF7 */
-  --foreground: oklch(0.22 0.02 240);
-  /* #1F2937 */
-  --card: oklch(0.99 0.015 185);
-  --card-foreground: oklch(0.22 0.02 240);
-  --popover: oklch(0.99 0.015 185);
-  --popover-foreground: oklch(0.22 0.02 240);
+  /* Light theme — Crisp, minimal, high-contrast */
+  --background: oklch(0.98 0.005 240);
+  /* Very soft cool gray, almost white */
+  --foreground: oklch(0.20 0.02 240);
+  /* Deep slate/charcoal for text */
+
+  --card: oklch(1 0 0);
+  /* Pure white cards to pop off the background */
+  --card-foreground: oklch(0.20 0.02 240);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.20 0.02 240);
+
   --primary: oklch(0.72 0.13 185);
-  /* #1FBFB8 */
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.87 0.09 185);
-  /* #7EE7DA */
-  --secondary-foreground: oklch(0.22 0.02 240);
-  --muted: oklch(0.93 0.04 185);
-  --muted-foreground: oklch(0.45 0.04 185);
+  /* Your Teal #1FBFB8 */
+  --primary-foreground: oklch(1 0 0);
+  /* Pure white text on primary buttons */
+
+  --secondary: oklch(0.95 0.01 240);
+  /* Clean light slate instead of washed-out teal */
+  --secondary-foreground: oklch(0.25 0.02 240);
+
+  --muted: oklch(0.95 0.01 240);
+  --muted-foreground: oklch(0.55 0.02 240);
+  /* Softer gray for descriptions */
+
   --accent: oklch(0.82 0.15 80);
-  /* #F2C14E */
-  --accent-foreground: oklch(0.22 0.02 240);
+  /* Your Amber #F2C14E */
+  --accent-foreground: oklch(0.20 0.02 240);
+
   --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.87 0.06 185);
-  --input: oklch(0.87 0.06 185);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.92 0.01 240);
+  /* Crisp, subtle borders */
+  --input: oklch(0.92 0.01 240);
   --ring: oklch(0.72 0.13 185);
-  /* #1FBFB8 */
+  /* Teal focus rings */
+
   --chart-1: oklch(0.72 0.13 185);
-  /* #1FBFB8 */
   --chart-2: oklch(0.82 0.15 80);
-  /* #F2C14E */
-  --chart-3: oklch(0.87 0.09 185);
-  /* #7EE7DA */
-  --chart-4: oklch(0.22 0.02 240);
-  /* #1F2937 */
+  --chart-3: oklch(0.45 0.02 240);
+  --chart-4: oklch(0.85 0.01 240);
   --chart-5: oklch(0.65 0.14 185);
+
   --radius: 0.625rem;
-  --sidebar: oklch(0.99 0.015 185);
-  --sidebar-foreground: oklch(0.22 0.02 240);
+
+  --sidebar: oklch(0.98 0.005 240);
+  --sidebar-foreground: oklch(0.20 0.02 240);
   --sidebar-primary: oklch(0.72 0.13 185);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.87 0.09 185);
-  --sidebar-accent-foreground: oklch(0.22 0.02 240);
-  --sidebar-border: oklch(0.87 0.06 185);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.95 0.01 240);
+  --sidebar-accent-foreground: oklch(0.20 0.02 240);
+  --sidebar-border: oklch(0.92 0.01 240);
   --sidebar-ring: oklch(0.72 0.13 185);
 }
+
 
 .dark {
   /* Dark theme — #1F2937 base, teal accents, amber highlights */

@@ -12,3 +12,9 @@ export interface Category {
   name: string
   image: string
 }
+
+export interface GalleryImage {
+  id: string | number;
+  url: string;
+  alt?: string;
+}

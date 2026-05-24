@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Heart, Info, ListChecks, Package } from "lucide-react"
+import { Home, Heart, Info, Package, GalleryHorizontalEnd } from "lucide-react"
 
 export function BottomNav() {
   const pathname = usePathname()
@@ -11,34 +11,34 @@ export function BottomNav() {
 
   const navItems = isDashboard
     ? [
-        {
-          href: "/dashboard/orders",
-          label: "سفارش‌ها",
-          icon: ListChecks,
-        },
-        {
-          href: "/dashboard/items",
-          label: "آیتم‌ها",
-          icon: Package,
-        },
-      ]
+      {
+        href: "/dashboard/gallery",
+        label: "گالری",
+        icon: GalleryHorizontalEnd,
+      },
+      {
+        href: "/dashboard/items",
+        label: "آیتم‌ها",
+        icon: Package,
+      },
+    ]
     : [
-        {
-          href: "/",
-          label: "خانه",
-          icon: Home,
-        },
-        {
-          href: "/favourites",
-          label: "علاقه‌مندی‌ها",
-          icon: Heart,
-        },
-        {
-          href: "/about",
-          label: "درباره ما",
-          icon: Info,
-        },
-      ]
+      {
+        href: "/",
+        label: "خانه",
+        icon: Home,
+      },
+      {
+        href: "/favourites",
+        label: "علاقه‌مندی‌ها",
+        icon: Heart,
+      },
+      {
+        href: "/about",
+        label: "درباره ما",
+        icon: Info,
+      },
+    ]
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-t border-border">

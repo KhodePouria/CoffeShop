@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Coffee, GalleryHorizontal, GalleryHorizontalEndIcon, Milk } from "lucide-react"
 
 export default function DashboardPage() {
   return (
@@ -15,12 +16,19 @@ export default function DashboardPage() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild className="w-full sm:w-auto">
-              <Link href="/dashboard/orders">مشاهده سفارش‌ها</Link>
-            </Button>
             <Button asChild variant="outline" className="w-full sm:w-auto">
-              <Link href="/dashboard/items">مدیریت آیتم‌ها</Link>
+              <div>
+                <Link href="/dashboard/items">مدیریت آیتم‌ها</Link>
+                <Coffee />
+              </div>
             </Button>
+            <Button asChild className="w-full sm:w-auto">
+              <div>
+                <Link href="/dashboard/gallery">گالری</Link>
+                <GalleryHorizontalEndIcon />
+              </div>
+            </Button>
+
           </div>
         </div>
       </section>
@@ -28,10 +36,10 @@ export default function DashboardPage() {
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="shadow-sm">
           <CardHeader>
-            <CardTitle className="text-lg sm:text-xl">سفارش‌ها</CardTitle>
+            <CardTitle className="text-lg sm:text-xl">گالری</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm text-muted-foreground">
-            <p>نمایش لیست سفارش‌ها، وضعیت پرداخت و زمان ثبت هر سفارش.</p>
+            <p>نمایش لیست عکس ها.</p>
             <Badge variant="secondary">به‌زودی متصل به API</Badge>
           </CardContent>
         </Card>

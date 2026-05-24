@@ -13,9 +13,7 @@ export default function HomePage() {
             </h1>
             <ThemeToggle />
           </div>
-          <p className="text-sm sm:text-base text-muted-foreground text-center text-balance">
-            لورم ایپسوم لورم ایپسوم
-          </p>
+
         </div>
       </header>
 

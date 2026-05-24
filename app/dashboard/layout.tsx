@@ -18,7 +18,7 @@ export default function DashboardLayout({
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-3">
             <div className="space-y-1">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">Dashboard</p>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">کافه دا</p>
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-balance">
                 داشبورد مدیریت
               </h1>
