@@ -3,55 +3,99 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
+import { ChevronLeft, Phone } from "lucide-react";
 
 export default function WelcomePage() {
   return (
-    <main className="relative min-h-screen w-full flex flex-col justify-end pb-24 items-center overflow-hidden bg-black">
+    <main className="relative min-h-screen w-full flex flex-col justify-end pb-16 items-center overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/welcome_bg.jpg"
           alt="Cafe Welcome Background"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-center scale-105"
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-x-0 bottom-0 h-[60vh] bg-linear-to-t from-black/95 directly-to-transparent" />
+        {/* Layered gradient for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
       </div>
 
-      <div className="relative z-10 w-full max-w-sm px-6 flex flex-col items-center space-y-10">
+      {/* Decorative top badge */}
+      <motion.div
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="absolute top-12 z-10 flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md"
+      >
+        <span className="text-white/80 text-xs tracking-widest font-medium">
+          خوش آمدید
+        </span>
+      </motion.div>
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-sm px-6 flex flex-col items-center gap-10">
+
+        {/* Title block */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col items-center text-center space-y-3"
+          className="flex flex-col items-center text-center gap-4"
         >
-          <h1 className="text-6xl font-bold text-white drop-shadow-sm">
-            کافه <span className="text-primary">دا</span>
-          </h1>
-          <p className="text-lg text-white/80 font-medium tracking-wide">
+          {/* Logo / name */}
+          <div className="relative">
+            <h1 className="text-7xl font-extrabold text-white tracking-tight leading-none">
+              کافه{" "}
+              <span className="relative inline-block text-primary">
+                دا
+                {/* Glow under the accent word */}
+                <span className="absolute -bottom-1 left-0 right-0 h-px bg-primary/60 blur-sm" />
+              </span>
+            </h1></div>
+
+          {/* Divider */}
+          <div className="flex items-center gap-3 w-40">
+            <div className="flex-1 h-px bg-white/20" />
+            <div className="w-1 h-1 rounded-full bg-primary/70" />
+            <div className="flex-1 h-px bg-white/20" />
+          </div><p className="text-base text-white/60 tracking-widest font-light">
             لحظاتی ناب در انتظار شماست
           </p>
         </motion.div>
 
+        {/* CTA buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="w-full flex flex-col gap-4"
+          transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
+          className="w-full flex flex-col gap-3"
         >
-          <Link href="/menu" className="w-full block">
-            <div className="w-full flex items-center justify-center py-4 bg-primary text-primary-foreground rounded-2xl font-bold text-lg shadow-lg hover:bg-primary/90 transition-all active:scale-[0.98]">
-              مشاهده منو
+          <Link href="/menu" className="w-full block group">
+            <div className="w-full flex items-center justify-between px-6 py-4 bg-primary text-primary-foreground rounded-2xl font-semibold text-lg shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-primary/90 transition-all active:scale-[0.98] group-hover:shadow-primary/30 group-hover:shadow-lg">
+              <span>مشاهده منو</span>
+              <ChevronLeft className="w-5 h-5 opacity-70 -translate-x-1 group-hover:-translate-x-0 transition-transform" />
             </div>
           </Link>
 
-          <Link href="tel:+982100000000" className="w-full block">
-            <div className="w-full flex items-center justify-center py-4 bg-transparent border-2 border-primary/50 text-white rounded-2xl font-bold text-lg hover:bg-primary/20 transition-all active:scale-[0.98] backdrop-blur-[2px]">
-              تماس مستقیم
+          <Link href="tel:+982100000000" className="w-full block group">
+            <div className="w-full flex items-center justify-between px-6 py-4 bg-white/10 border border-white/20 text-white rounded-2xl font-medium text-lg hover:bg-white/15 transition-all active:scale-[0.98] backdrop-blur-sm">
+              <span>تماس مستقیم</span>
+              <Phone className="w-4 h-4 opacity-60" />
             </div>
           </Link>
         </motion.div>
+
+        {/* Bottom hint */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="text-white/30 text-xs tracking-widest"
+        >
+          ساعت کاری ۹ صبح تا ۸ شب
+        </motion.p>
       </div>
     </main>
   );

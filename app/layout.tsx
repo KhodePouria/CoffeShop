@@ -1,11 +1,11 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import { BottomNav } from "@/components/bottom-nav"
 import { CookiesProvider } from "next-client-cookies/server"
 
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "sonner"
+import { Peyda } from "./fonts"
 
 export const metadata: Metadata = {
   title: "کافه دا - منو",
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
-      <body className={`antialiased`}>
+      <body className={`${Peyda.className}`}>
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <CookiesProvider>
             <div className="min-h-screen bg-background">

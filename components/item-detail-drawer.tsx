@@ -6,10 +6,11 @@ import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/u
 import { Button } from "@/components/ui/button"
 import { Heart, X } from "lucide-react"
 import { useFavourites } from "@/lib/favourites-store"
-import { toPersianDigits } from "@/lib/utils"
+import { serveImage, toPersianDigits } from "@/lib/utils"
+import { ProductModel } from "@/api/Api"
 
 interface ItemDetailDrawerProps {
-  item: MenuItem | null
+  item: ProductModel | null
   open: boolean
   onOpenChange: (open: boolean) => void
 }
@@ -31,7 +32,7 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent className="max-w-md mx-auto w-full border-none bg-background backdrop-blur-xl shadow-2xl rounded-t-[2.5rem] overflow-hidden">
+      <DrawerContent className="max-w-2xl mx-auto w-full border-none bg-background backdrop-blur-xl shadow-2xl rounded-t-[2rem]! overflow-hidden">
 
         {/* Floating Custom Handle on top of the image */}
         <div className="absolute top-3 left-1/2 -translate-x-1/2 z-50 h-1.5 w-12 rounded-full bg-white/60 backdrop-blur-md shadow-sm" />
@@ -51,8 +52,8 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
           {/* Image Section completely flush to the top */}
           <div className="relative h-[35vh] min-h-[250px] w-full shrink-0">
             <Image
-              src={item.image || "/placeholder.svg"}
-              alt={item.name}
+              src={serveImage(item.imageUrl || '') || "/placeholder.svg"}
+              alt={item.title}
               fill
               className="object-cover"
               priority
@@ -67,7 +68,7 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
             <DrawerHeader className="p-0 mb-4 text-start">
               <div className="flex flex-col gap-2">
                 <DrawerTitle className="text-2xl sm:text-3xl font-bold text-foreground leading-snug">
-                  {item.name}
+                  {item.title}
                 </DrawerTitle>
                 <span className="text-xl font-semibold text-primary/90" dir="ltr">
                   {toPersianDigits(item.price.toFixed(3))} تومان
@@ -99,7 +100,7 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
               {/* Phone Order Button */}
               <Button
                 asChild
-                className="flex-1 h-14 rounded-full text-lg font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] transition-all duration-300"
+                className="flex-1 h-14 rounded-full text-lg  text-primary-foreground font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] transition-all duration-300"
               >
                 {/* Replace the number below with your actual phone number */}
                 <a href="tel:02112345678">

@@ -6,10 +6,11 @@ import type { MenuItem } from "@/lib/types"
 import { Heart } from "lucide-react"
 import { useFavourites } from "@/lib/favourites-store"
 import { Button } from "@/components/ui/button"
-import { toPersianDigits } from "@/lib/utils"
+import { serveImage, toPersianDigits } from "@/lib/utils"
+import { ProductModel } from "@/api/Api"
 
 interface MenuItemCardProps {
-  item: MenuItem
+  item: ProductModel
   onClick: () => void
 }
 
@@ -35,8 +36,8 @@ export function MenuItemCard({ item, onClick }: MenuItemCardProps) {
 
       <div className="relative aspect-square sm:aspect-4/3 w-full overflow-hidden rounded-[2rem] bg-muted/30">
         <Image
-          src={item.image || "/placeholder.svg"}
-          alt={item.name}
+          src={serveImage(item.imageUrl || '') || "/placeholder.svg"}
+          alt={item.title}
           fill
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
@@ -60,7 +61,7 @@ export function MenuItemCard({ item, onClick }: MenuItemCardProps) {
         <div className="flex flex-col gap-1.5">
           <div className="flex items-start justify-between gap-3">
             <h3 className="font-bold text-lg leading-tight line-clamp-1 min-w-0 tracking-tight text-foreground/90">
-              {item.name}
+              {item.title}
             </h3>
             <span className="text-foreground font-bold text-lg whitespace-nowrap tracking-tighter" dir="rtl">
               {toPersianDigits(item.price.toFixed(3))} <span className="text-xs font-medium text-muted-foreground mr-0.5">تومان</span>

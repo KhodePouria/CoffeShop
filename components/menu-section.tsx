@@ -2,12 +2,13 @@
 
 import type { MenuItem } from "@/lib/types"
 import { MenuItemCard } from "./menu-item-card"
+import { ProductModel } from "@/api/Api"
 
 interface MenuSectionProps {
   categoryId: string
   categoryName: string
-  items: MenuItem[]
-  onItemClick: (item: MenuItem) => void
+  items: ProductModel[]
+  onItemClick: (item: ProductModel) => void
 }
 
 export function MenuSection({ categoryId, categoryName, items, onItemClick }: MenuSectionProps) {

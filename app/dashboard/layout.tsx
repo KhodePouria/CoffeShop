@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description: "مدیریت آیتم‌های منو و تنظیمات",
 }
 
+
 export default function DashboardLayout({
   children,
 }: Readonly<{

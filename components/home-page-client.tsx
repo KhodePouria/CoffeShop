@@ -6,17 +6,18 @@ import { CategorySlider } from "@/components/category-slider"
 import { MenuSection } from "@/components/menu-section"
 import { ItemDetailDrawer } from "@/components/item-detail-drawer"
 import { useScrollSpy } from "@/hooks/use-scroll-spy"
+import { CategoryModel, ProductModel } from "@/api/Api"
 
 interface HomePageClientProps {
-    categories: Category[]
-    menuItems: MenuItem[]
+    categories: CategoryModel[]
+    menuItems: ProductModel[]
 }
 
 export function HomePageClient({ categories, menuItems }: HomePageClientProps) {
     const categoryIds = categories.map((c) => c.id)
     const activeCategoryFromScroll = useScrollSpy(categoryIds, 150)
     const [activeCategory, setActiveCategory] = useState(categoryIds[0] ?? "")
-    const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null)
+    const [selectedItem, setSelectedItem] = useState<ProductModel | null>(null)
     const [drawerOpen, setDrawerOpen] = useState(false)
 
     useEffect(() => {
@@ -40,20 +41,20 @@ export function HomePageClient({ categories, menuItems }: HomePageClientProps) {
         }
     }
 
-    const handleItemClick = (item: MenuItem) => {
+    const handleItemClick = (item: ProductModel) => {
         setSelectedItem(item)
         setDrawerOpen(true)
     }
 
     return (
         <>
-            <div className="sticky top-19 z-30">
+            <div className="sticky top-[3.8rem] z-30">
                 <CategorySlider activeCategory={activeCategory} onCategoryClick={handleCategoryClick} />
             </div>
 
             <main className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {categories.map((category) => {
-                    const items = menuItems.filter((item) => item.category === category.id)
+                    const items = menuItems.filter((item) => item.categoryId === category.id)
                     return (
                         <MenuSection
                             key={category.id}
