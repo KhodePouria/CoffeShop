@@ -1,10 +1,11 @@
 
-import { GalleryImage } from "@/lib/types"
 import { ImageUploadControls } from "./image-upload-controls"
 import { GalleryImageCard } from "./gallery-image-card"
+import { ObjectModel } from "@/api/Api"
+import { serveImage } from "@/lib/utils"
 
 interface GalleryShowProps {
-    data: GalleryImage[]
+    data: ObjectModel[]
 }
 
 export default function GalleryShow({ data }: GalleryShowProps) {
@@ -19,7 +20,7 @@ export default function GalleryShow({ data }: GalleryShowProps) {
             ) : (
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                     {data.map((item) => (
-                        <GalleryImageCard key={item.id} image={item} />
+                        <GalleryImageCard key={item.id} image={serveImage(item.bucketId)} />
                     ))}
                 </div>
             )}

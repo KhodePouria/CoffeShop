@@ -24,17 +24,17 @@ export function BottomNav() {
     ]
     : [
       {
-        href: "/",
+        href: "/menu",
         label: "خانه",
         icon: Home,
       },
       {
-        href: "/favourites",
+        href: "/menu/favourites",
         label: "علاقه‌مندی‌ها",
         icon: Heart,
       },
       {
-        href: "/about",
+        href: "/menu/about",
         label: "درباره ما",
         icon: Info,
       },

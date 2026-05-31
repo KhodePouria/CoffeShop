@@ -16,7 +16,7 @@ export default function DashboardPage() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" className="w-full sm:w-auto">
+            <Button asChild variant="outline" className="w-full sm:w-auto hover:text-white">
               <div>
                 <Link href="/dashboard/items">مدیریت آیتم‌ها</Link>
                 <Coffee />

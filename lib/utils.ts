@@ -17,6 +17,9 @@ export function toPersianDigits(value: number | string): string {
   return str;
 }
 
+export function serveImage(id: string) {
+  return `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/serve/${id}`
+}
 
 export function formatPersianPrice(price: number): string {
   // Multiply by 10,000 to get a realistic thousand-Toman menu price matching standard cafés

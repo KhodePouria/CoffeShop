@@ -2,10 +2,13 @@ import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { BottomNav } from "@/components/bottom-nav"
+import { CookiesProvider } from "next-client-cookies/server"
+
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "sonner"
 
 export const metadata: Metadata = {
-  title: "رستوران خوشمزه - منو",
+  title: "کافه دا - منو",
   description: "منوی متنوع ما را با غذاها، نوشیدنی‌ها و دسرهای خوشمزه کاوش کنید",
   generator: 'v0.app'
 }
@@ -18,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <body className={`antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <div className="min-h-screen bg-background">
-            {children}
-            <BottomNav />
-          </div>
+        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+          <CookiesProvider>
+            <div className="min-h-screen bg-background">
+              {children}
+              <Toaster dir="rtl" position="top-center" />
+            </div>
+          </CookiesProvider>
         </ThemeProvider>
       </body>
     </html>

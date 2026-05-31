@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { BottomNav } from "@/components/bottom-nav"
 
 export const metadata: Metadata = {
   title: "داشبورد | مدیریت منو",
@@ -30,6 +31,8 @@ export default function DashboardLayout({
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {children}
+        <BottomNav />
+
       </main>
     </div>
   )

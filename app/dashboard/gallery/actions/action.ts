@@ -1,39 +1,38 @@
 "use server"
-/* import {  IdInput, ObjectModel,ReadImageInput, ReadImageOutput, UploadImageInput, UploadImageOutput } from "@/api/Api";
-import { takeApi } from "@/lib/take-api";
-import { Response } from "@/types";
-import { revalidatePath } from "next/cache";
- */
-export async function readImages()/* input: ReadImageInput): Promise<ReadImageOutput> */ {
-    /* const api = await takeApi()
-    try {
-        const {data}  = await api.gallery.readImages(input)
-        return data
-    } catch (error: any) {
-        return error
-    } */
-}
 
-/* export async function uploadImage(input : UploadImageInput): Promise<Response<UploadImageOutput>> {
+import { CreateProductInput, IdInput, ObjectModel, ProductModel, ReadImageInput, ReadImageOutput, ReadProductInput, ReadProductOutput, UpdateProductInput, UploadImageInput, UploadImageOutput } from "@/api/Api"
+import { takeApi } from "@/lib/take-api"
+import { Response } from "@/lib/types";
+
+
+export async function uploadImage(input: UploadImageInput): Promise<Response<UploadImageOutput>> {
     const api = await takeApi()
+
     try {
+
         const { data } = await api.gallery.uploadImage(input)
+
         return { data }
     } catch (error: any) {
         return { error: error.error }
     }
 }
 
-export async function deleteImage(id : IdInput): Promise<Response<ObjectModel>> {
+export async function deleteImage(input: IdInput): Promise<Response<ObjectModel>> {
     const api = await takeApi()
     try {
-        const { data } = await api.gallery.deleteImage({id: id.id})
+        const { data } = await api.gallery.deleteImage(input)
         return { data }
     } catch (error: any) {
         return { error: error.error }
     }
 }
-
-export async function revalidateImages() {
-    revalidatePath("/dashboard/gallery", "page")
-} */
+export async function readImages(input: ReadImageInput): Promise<Response<ReadImageOutput>> {
+    const api = await takeApi()
+    try {
+        const { data } = await api.gallery.readImages(input)
+        return { data }
+    } catch (error: any) {
+        return { error: error.error }
+    }
+}

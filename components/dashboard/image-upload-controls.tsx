@@ -2,6 +2,8 @@
 
 import React, { useRef, useState } from "react"
 import { Camera, Upload, Plus, Loader2 } from "lucide-react"
+import { uploadImage } from "@/app/dashboard/gallery/actions/action"
+import { toast } from "sonner"
 
 export function ImageUploadControls() {
     const [isUploading, setIsUploading] = useState(false)
@@ -10,20 +12,28 @@ export function ImageUploadControls() {
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
+
         if (!file) return
 
         try {
             setIsUploading(true)
-            // TODO: منطق آپلود فایل خود را اینجا قرار دهید
 
-            console.log("فایل برای آپلود انتخاب شد:", file.name)
-            // شبیه‌سازی زمان آپلود
-            await new Promise(resolve => setTimeout(resolve, 1000))
+            const response = await uploadImage({ image: file })
+
+            if (!response.error) {
+                toast.success('تصویر آپلود شد')
+            } else {
+
+                toast.error('مشکلی در آپلود تصویر پیش آمد')
+            }
+
         } catch (error) {
-            console.error("آپلود با خطا مواجه شد", error)
+
+            toast.error('مشکلی در آپلود تصویر پیش آمد')
         } finally {
             setIsUploading(false)
         }
+
     }
 
     return (
@@ -35,7 +45,6 @@ export function ImageUploadControls() {
                 <h2 className="font-semibold text-lg tracking-tight">افزودن به گالری</h2>
             </div>
 
-            {/* ورودی‌های مخفی */}
             <input
                 type="file"
                 accept="image/*"
@@ -43,7 +52,7 @@ export function ImageUploadControls() {
                 ref={fileInputRef}
                 onChange={handleFileChange}
             />
-            {/* capture="environment" در موبایل دوربین پشتی را باز می‌کند */}
+
             <input
                 type="file"
                 accept="image/*"
@@ -53,7 +62,6 @@ export function ImageUploadControls() {
                 onChange={handleFileChange}
             />
 
-            {/* دکمه‌های عملیات */}
             <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
                 <button
                     onClick={() => fileInputRef.current?.click()}
