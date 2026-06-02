@@ -1,3 +1,4 @@
+import { readCategories } from "../category/actions/actions"
 import { CreateUpdateItemDialog } from "../components/createUpdateItem"
 import { readItems } from "./actions/actions"
 import { DashboardItemsList } from "./items-list"
@@ -15,7 +16,7 @@ export default async function DashboardItemsPage({ searchParams }: { searchParam
       skip
     }
   })
-
+  const categories = await readCategories({})
   return (
     <div className="space-y-6">
       <section className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -23,7 +24,7 @@ export default async function DashboardItemsPage({ searchParams }: { searchParam
           <h2 className="text-lg sm:text-xl font-semibold">آیتم‌های منو</h2>
           <p className="text-sm text-muted-foreground">لیست آیتم‌ها را مدیریت کنید.</p>
         </div>
-        <CreateUpdateItemDialog triggerLabel="افزودن آیتم جدید" />
+        <CreateUpdateItemDialog categories={categories.data?.data || []} triggerLabel="افزودن آیتم جدید" />
       </section>
 
       <DashboardItemsList items={items.data?.data || []} />

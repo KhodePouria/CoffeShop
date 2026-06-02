@@ -4,13 +4,15 @@ const baseItemSchema = z.object({
   name: z.string().min(2, "نام محصول حداقل باید ۲ کاراکتر باشد"),
   price: z.number().positive("قیمت باید بیشتر از صفر باشد"),
   category: z.string().min(2, "دسته‌بندی را وارد کنید"),
+  isActive: z.boolean(),
   description: z.string().min(10, "توضیحات باید حداقل ۱۰ کاراکتر باشد"),
 });
 
 const requiredImagesSchema = z
-  .array(z.string())
+  .string().optional()
 
-const optionalImagesSchema = z.array(z.string()).optional();
+const optionalImagesSchema = z
+  .string().optional()
 
 export const createItemSchema = baseItemSchema.extend({
   image: requiredImagesSchema,

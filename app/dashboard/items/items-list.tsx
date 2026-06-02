@@ -8,21 +8,13 @@ import { CreateUpdateItemDialog } from "../components/createUpdateItem"
 import { ItemDetailDrawer } from "@/components/item-detail-drawer"
 import moment from "jalali-moment"
 import type { ProductModel } from "@/api/Api"
-import type { MenuItem } from "@/lib/types"
 
 export function DashboardItemsList({ items }: { items: ProductModel[] }) {
-  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null)
+  const [selectedItem, setSelectedItem] = useState<ProductModel | null>(null)
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleView = (item: ProductModel) => {
-    setSelectedItem({
-      id: item.id,
-      name: item.title,
-      description: item.description || "توضیحاتی برای این محصول ثبت نشده است.",
-      price: item.price,
-      image: item.imageUrl || "",
-      category: item.categoryId,
-    })
+    setSelectedItem(item)
     setDrawerOpen(true)
   }
 

@@ -10,7 +10,7 @@ export default async function Page({ searchParams }: { searchParams: any }) {
   const params = await searchParams
   if (!params.page)
     params.page = 1
-  const itemsPerPage = 12
+  const itemsPerPage = 6
 
   const imageRes = await readImages({
     pagination: {
@@ -25,7 +25,8 @@ export default async function Page({ searchParams }: { searchParams: any }) {
   return (
     <div className="container flex flex-col justify-center w-full mx-auto mb-10">
       <GalleryShow data={allImages.data || []} />
-      <PaginationSSR itemsPerPage={itemsPerPage} totalItems={allImages.count || 0} searchParams={searchParams} />
+      {((allImages?.count || 0) > itemsPerPage) && <PaginationSSR itemsPerPage={itemsPerPage} totalItems={allImages?.count || 0} searchParams={searchParams} />}
+
     </div>
   )
 }

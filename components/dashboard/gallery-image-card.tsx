@@ -8,6 +8,7 @@ interface GalleryImageCardProps {
 }
 
 export function GalleryImageCard({ image }: GalleryImageCardProps) {
+
     return (
         <div className="relative overflow-hidden transition-all duration-300 border shadow-sm aspect-square rounded-2xl border-border/50 bg-secondary/30 group hover:shadow-md hover:-translate-y-1">
             <Image

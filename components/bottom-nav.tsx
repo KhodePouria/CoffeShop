@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Heart, Info, Package, GalleryHorizontalEnd } from "lucide-react"
+import { Home, Heart, Info, Package, GalleryHorizontalEnd, FolderClosed } from "lucide-react"
 
 export function BottomNav() {
   const pathname = usePathname()
@@ -15,6 +15,11 @@ export function BottomNav() {
         href: "/dashboard/gallery",
         label: "گالری",
         icon: GalleryHorizontalEnd,
+      },
+      {
+        href: "/dashboard/category",
+        label: "دسته بندی ها",
+        icon: FolderClosed,
       },
       {
         href: "/dashboard/items",

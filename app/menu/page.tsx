@@ -1,7 +1,8 @@
 import { ThemeToggle } from "@/components/theme-toggle"
 import { HomePageClient } from "@/components/home-page-client"
-import { readCategories, readItems } from "../dashboard/items/actions/actions"
+import { readItems } from "../dashboard/items/actions/actions"
 import { Coffee } from "lucide-react"
+import { readCategories } from "../dashboard/category/actions/actions"
 
 export default async function HomePage() {
     const catResults = await readCategories({})

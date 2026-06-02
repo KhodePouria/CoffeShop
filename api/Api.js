@@ -244,14 +244,12 @@ export class Api extends HttpClient {
      *
      * @tags Serve
      * @name GetFile
-     * @request POST:/serve/getFile
+     * @request GET:/serve/{id}
      */
-    getFile: (data, params = {}) =>
+    getFile: (id, params = {}) =>
       this.request({
-        path: `/serve/getFile`,
-        method: "POST",
-        body: data,
-        type: ContentType.Json,
+        path: `/serve/${id}`,
+        method: "GET",
         ...params,
       }),
   };

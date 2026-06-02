@@ -42,9 +42,6 @@ export declare enum CategorySortFieldEnum {
   Icon = "icon",
   CreatedAt = "createdAt",
 }
-export interface IdInput {
-  id: string;
-}
 export interface CreateCategoryInput {
   name: string;
   slug: string;
@@ -126,6 +123,9 @@ export interface UpdateCategoryData {
   name?: string;
   slug?: string;
   icon?: string;
+}
+export interface IdInput {
+  id: string;
 }
 export interface UpdateCategoryInput {
   data: UpdateCategoryData;
@@ -387,12 +387,12 @@ export declare class Api<
      *
      * @tags Serve
      * @name GetFile
-     * @request POST:/serve/getFile
+     * @request GET:/serve/{id}
      */
     getFile: (
-      data: IdInput,
+      id: string,
       params?: RequestParams,
-    ) => Promise<HttpResponse<any, File>>;
+    ) => Promise<HttpResponse<void, any>>;
   };
   category: {
     /**

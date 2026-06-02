@@ -102,7 +102,7 @@ function SelectImages({ children, selectedImages, setSelectedImages, singleSelec
 		<Dialog>
 			<DialogTrigger asChild>{children}</DialogTrigger>
 
-			<DialogContent className="max-w-4xl mx-auto sm:mx-auto p-0 overflow-hidden gap-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+			<DialogContent className=" mx-auto sm:mx-auto p-0 overflow-hidden gap-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
 				{/* Header */}
 				<DialogHeader className="flex flex-row items-center justify-between px-6 py-4 border-b space-y-0">
@@ -111,7 +111,7 @@ function SelectImages({ children, selectedImages, setSelectedImages, singleSelec
 							<ImageIcon className="size-4 text-primary" />
 						</div>
 						<div>
-							<DialogTitle className="text-base font-semibold">انتخاب تصاویر</DialogTitle>
+							<DialogTitle className="text-base font-semibold">انتخاب تصویر</DialogTitle>
 							{selectedCount > 0 && (
 								<p className="text-xs text-muted-foreground mt-0.5">
 									{selectedCount} تصویر انتخاب شده

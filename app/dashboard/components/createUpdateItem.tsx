@@ -9,8 +9,9 @@ import {
   type ItemFormInput,
   type ItemFormValues,
 } from "../validations"
-import { ProductModel } from "@/api/Api"
+import { CategoryModel, ProductModel } from "@/api/Api"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   Dialog,
   DialogContent,
@@ -29,16 +30,26 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Plus, X } from "lucide-react"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Pencil, Plus, X } from "lucide-react"
 import SelectImages from "@/components/SelectImages"
 import Image from "next/image"
 import { serveImage } from "@/lib/utils"
+import { addItem } from "../items/actions/actions"
+import { toast } from "sonner"
 
 interface CreateUpdateItemDialogProps {
   item?: ProductModel
   triggerLabel: string
   triggerVariant?: "default" | "outline" | "secondary" | "destructive"
   onSubmit?: (values: ItemFormValues, itemId?: string) => Promise<void> | void
+  categories: CategoryModel[]
 }
 
 export function CreateUpdateItemDialog({
@@ -46,6 +57,7 @@ export function CreateUpdateItemDialog({
   triggerLabel,
   triggerVariant = "default",
   onSubmit,
+  categories,
 }: CreateUpdateItemDialogProps) {
   const schema = item ? updateItemSchema : createItemSchema
   const defaultValues = useMemo<ItemFormInput>(
@@ -54,7 +66,8 @@ export function CreateUpdateItemDialog({
       price: item?.price ?? 0,
       category: item?.categoryId ?? "",
       description: item?.description ?? "",
-      image: [],
+      image: "",
+      isActive: item?.isActive ?? true,
     }),
     [item],
   )
@@ -65,12 +78,25 @@ export function CreateUpdateItemDialog({
   })
 
   const handleSubmit = async (values: ItemFormInput) => {
-    const parsed = schema.parse(values)
-    await onSubmit?.(parsed, item?.id)
+
+    const results = await addItem({
+      imageUrl: values.image,
+      categoryId: values.category,
+      isActive: values.isActive,
+      price: values.price,
+      title: values.name,
+      description: values.description
+    })
+    if (!results.error) {
+      toast.success("آیتم با موفقیت اضافه شد")
+      return
+    } else {
+      toast.error("مشکلی در اضافه کردن آیتم پیش آمد")
+    }
   }
 
   return (
-    <Dialog >
+    <Dialog>
       <DialogTrigger asChild>
         <Button variant={triggerVariant}>{triggerLabel}</Button>
       </DialogTrigger>
@@ -120,7 +146,10 @@ export function CreateUpdateItemDialog({
                         min="0"
                         placeholder="مثال: 4.80"
                         value={field.value ?? ""}
-                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                        onChange={(e) => {
+                          const value = e.target.value
+                          field.onChange(value === "" ? 0 : Number(value))
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -129,20 +158,59 @@ export function CreateUpdateItemDialog({
               />
             </div>
 
-            {/* Row 2: Category */}
-            <FormField
-              control={form.control}
-              name="category"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm font-medium">دسته‌بندی</FormLabel>
-                  <FormControl>
-                    <Input placeholder="مثال: نوشیدنی‌ها" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {/* Row 2: Category dropdown + isActive checkbox */}
+            <div className="flex gap-4 items-end ">
+              <FormField
+                control={form.control}
+                name="category"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm font-medium">دسته‌بندی</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {categories.length === 0 ? (
+                          <div dir="rtl" className="px-3 py-4 text-center text-sm text-muted-foreground">
+                            دسته‌بندی‌ای وجود ندارد.
+                            <br />
+                            <span className="text-xs">ابتدا یک دسته‌بندی ایجاد کنید.</span>
+                          </div>
+                        ) : (
+                          categories.map((cat) => (
+                            <SelectItem key={cat.id} value={cat.id}>
+                              {cat.name}
+                            </SelectItem>
+                          ))
+                        )}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="isActive"
+                render={({ field }) => (
+                  <FormItem className="flex items-center grow rounded-lg border border-border px-3 py-[0.6rem] text-center text-sm text-muted-foreground">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormLabel className="text-sm font-medium cursor-pointer mb-0 leading-none">
+                      فعال
+                    </FormLabel>
+                  </FormItem>
+                )}
+              />
+            </div>
 
             {/* Row 3: Description */}
             <FormField
@@ -163,65 +231,47 @@ export function CreateUpdateItemDialog({
               )}
             />
 
-            {/* Row 4: Images */}
             <FormField
               control={form.control}
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium">تصاویر محصول</FormLabel>
+                  <FormLabel className="text-sm font-medium">تصویر محصول</FormLabel>
                   <FormControl>
-                    <div className="flex flex-wrap gap-3 items-start p-3 rounded-xl border border-dashed border-border bg-muted/30 min-h-24">
-                      {/* Uploaded thumbnails */}
-                      {field.value?.map((imgId: string) => (
-                        <div
-                          key={imgId}
-                          className="relative w-16 h-16 rounded-lg overflow-hidden border border-border shadow-sm group"
-                        >
-                          <Image
-                            src={serveImage(imgId)}
-                            alt="تصویر انتخاب‌شده"
-                            width={64}
-                            height={64}
-                            className="object-cover w-full h-full"
-                          />
-                          {/* Remove button on hover */}
-                          <button
-                            type="button"
-                            onClick={() =>
-                              field.onChange(field.value?.filter((i: string) => i !== imgId))
-                            }
-                            className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition rounded-lg"
-                          >
-                            <X className="w-4 h-4 text-white" />
-                          </button>
-                        </div>
-                      ))}
-
-                      {/* Add button */}
-                      <SelectImages
-                        selectedImages={field.value || []}
-                        setSelectedImages={(updated) => field.onChange(updated)}
-                      >
-                        <button
-                          type="button"
-                          className="flex flex-col items-center justify-center w-16 h-16 bg-background border border-dashed border-border rounded-lg hover:bg-muted hover:border-primary/50 transition gap-1"
-                        >
-                          <Plus className="w-4 h-4 text-muted-foreground" />
-                          <span className="text-[10px] text-muted-foreground">افزودن</span>
-                        </button>
-                      </SelectImages>
-                    </div>
+                    <SelectImages
+                      singleSelect
+                      selectedImages={field.value ? [field.value] : []}
+                      setSelectedImages={(updated) =>
+                        field.onChange(updated[updated.length - 1] ?? "")
+                      }
+                    >
+                      <div className="relative w-full h-32 rounded-lg overflow-hidden border-2 border-dashed border-border hover:border-primary/50 transition cursor-pointer group">
+                        {field.value ? (
+                          <>
+                            <Image
+                              src={serveImage(field.value)}
+                              alt="تصویر محصول"
+                              fill
+                              className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"><Pencil className="w-5 h-5 text-white" />
+                            </div>
+                          </>
+                        ) : (
+                          <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-muted/30">
+                            <Plus className="w-8 h-8 text-muted-foreground" />
+                            <span className="text-xs text-muted-foreground">انتخاب تصویر</span>
+                          </div>
+                        )}
+                      </div>
+                    </SelectImages>
                   </FormControl>
-                  {item && (
-                    <p className="text-xs text-muted-foreground mt-1">
-                      در صورت نیاز، تصویر جدید انتخاب کنید.
-                    </p>
-                  )}
                   <FormMessage />
                 </FormItem>
               )}
             />
+
+
 
             <div className="h-px bg-border" />
 
