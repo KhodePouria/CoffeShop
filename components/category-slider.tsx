@@ -1,16 +1,18 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { categories } from "@/lib/menu-data"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { CategoryModel } from "@/api/Api"
+import { serveImage } from "@/lib/utils"
 
 interface CategorySliderProps {
+  categories: CategoryModel[]
   activeCategory: string
   onCategoryClick: (categoryId: string) => void
 }
 
-export function CategorySlider({ activeCategory, onCategoryClick }: CategorySliderProps) {
+export function CategorySlider({ categories, activeCategory, onCategoryClick }: CategorySliderProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [showLeftArrow, setShowLeftArrow] = useState(false)
   const [showRightArrow, setShowRightArrow] = useState(true)
@@ -29,7 +31,9 @@ export function CategorySlider({ activeCategory, onCategoryClick }: CategorySlid
       }
     }
   }
-
+  const activeCats = categories.filter(
+    (category) => (category.products?.length ?? 0) > 0
+  )
   useEffect(() => {
     checkScroll()
     const container = scrollContainerRef.current
@@ -86,7 +90,7 @@ export function CategorySlider({ activeCategory, onCategoryClick }: CategorySlid
           className="flex gap-4 overflow-x-auto scrollbar-hide py-3 justify-start lg:justify-center items-center"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {categories.map((category) => {
+          {activeCats?.map((category) => {
             const isActive = activeCategory === category.id;
             return (
               <button
@@ -94,7 +98,7 @@ export function CategorySlider({ activeCategory, onCategoryClick }: CategorySlid
                 ref={isActive ? activeButtonRef : null}
                 onClick={() => onCategoryClick(category.id)}
                 style={{
-                  backgroundImage: `url(${category.image})`,
+                  backgroundImage: `url(${serveImage(category.icon || "")})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}

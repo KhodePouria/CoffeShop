@@ -51,7 +51,6 @@ export function CategoryTable({ categories }: CategoryTableProps) {
             toast.error("مشکلی در حذف دسته بندی پیش آمد")
         }
         setDeletingId(null)
-        router.refresh()
     }
 
     if (categories.length === 0) {
@@ -119,21 +118,21 @@ export function CategoryTable({ categories }: CategoryTableProps) {
                                     />
 
                                     {/* Delete */}
-                                    <AlertDialog>
+                                    <AlertDialog >
                                         <AlertDialogTrigger asChild>
                                             <Button
                                                 variant="ghost"
                                                 size="icon"
-                                                className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                                                className="text-destructive hover:text-destructive hover:bg-destructive/20!"
                                                 disabled={deletingId === cat.id}
                                             >
                                                 <Trash2 className="w-4 h-4" />
                                             </Button>
                                         </AlertDialogTrigger>
                                         <AlertDialogContent dir="rtl">
-                                            <AlertDialogHeader>
+                                            <AlertDialogHeader className="text-right items-start">
                                                 <AlertDialogTitle>حذف دسته‌بندی</AlertDialogTitle>
-                                                <AlertDialogDescription>
+                                                <AlertDialogDescription className="text-right items-start">
                                                     آیا مطمئن هستید که می‌خواهید دسته‌بندی «{cat.name}» را حذف کنید؟
                                                     این عمل قابل بازگشت نیست.
                                                 </AlertDialogDescription>

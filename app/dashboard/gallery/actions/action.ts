@@ -1,8 +1,9 @@
 "use server"
 
-import { CreateProductInput, IdInput, ObjectModel, ProductModel, ReadImageInput, ReadImageOutput, ReadProductInput, ReadProductOutput, UpdateProductInput, UploadImageInput, UploadImageOutput } from "@/api/Api"
+import { IdInput, ObjectModel, ReadImageInput, ReadImageOutput, UploadImageInput, UploadImageOutput } from "@/api/Api"
 import { takeApi } from "@/lib/take-api"
-import { Response } from "@/lib/types";
+import { Response } from "@/types/types";
+import { revalidatePath } from "next/cache";
 
 
 export async function uploadImage(input: UploadImageInput): Promise<Response<UploadImageOutput>> {
@@ -11,7 +12,7 @@ export async function uploadImage(input: UploadImageInput): Promise<Response<Upl
     try {
 
         const { data } = await api.gallery.uploadImage(input)
-
+        revalidatePath("/dashboard/gallery", "page")
         return { data }
     } catch (error: any) {
         return { error: error.error }
@@ -22,6 +23,7 @@ export async function deleteImage(input: IdInput): Promise<Response<ObjectModel>
     const api = await takeApi()
     try {
         const { data } = await api.gallery.deleteImage(input)
+        revalidatePath("/dashboard/gallery", "page")
         return { data }
     } catch (error: any) {
         return { error: error.error }

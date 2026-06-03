@@ -1,5 +1,4 @@
 import { readCategories } from "./actions/actions"
-import { CategoryModel } from "@/api/Api"
 import { CreateUpdateCategoryDialog } from "@/components/CreateUpdateCategory"
 import { CategoryTable } from "@/components/CategoryTable"
 import { LayoutGrid } from "lucide-react"

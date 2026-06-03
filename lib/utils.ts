@@ -22,13 +22,10 @@ export function serveImage(id: string) {
 }
 
 export function formatPersianPrice(price: number): string {
-  // Multiply by 10,000 to get a realistic thousand-Toman menu price matching standard cafés
-  const tomanValue = Math.round(price * 10000);
+  const tomanValue = Math.round(price);
 
-  // Format with thousand separators
   const formattedWithCommas = tomanValue.toLocaleString("en-US");
 
-  // Convert digits to Persian
   const persianNum = toPersianDigits(formattedWithCommas);
   return `${persianNum} تومان`;
 }

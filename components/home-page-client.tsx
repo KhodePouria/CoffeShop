@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import type { Category, MenuItem } from "@/lib/types"
 import { CategorySlider } from "@/components/category-slider"
 import { MenuSection } from "@/components/menu-section"
 import { ItemDetailDrawer } from "@/components/item-detail-drawer"
@@ -49,10 +48,10 @@ export function HomePageClient({ categories, menuItems }: HomePageClientProps) {
     return (
         <>
             <div className="sticky top-[3.8rem] z-30">
-                <CategorySlider activeCategory={activeCategory} onCategoryClick={handleCategoryClick} />
+                <CategorySlider categories={categories} activeCategory={activeCategory} onCategoryClick={handleCategoryClick} />
             </div>
 
-            <main className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <main className="max-w-6xl mx-auto py-6  px-4 sm:px-6 lg:px-8">
                 {categories.map((category) => {
                     const items = menuItems.filter((item) => item.categoryId === category.id)
                     return (

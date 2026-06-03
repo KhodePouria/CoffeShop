@@ -21,7 +21,7 @@ export default function GalleryShow({ data }: GalleryShowProps) {
             ) : (
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                     {data.map((item) => (
-                        <GalleryImageCard key={item.id} image={serveImage(item.id)} />
+                        <GalleryImageCard key={item.id} id={item.id} image={serveImage(item.id)} />
                     ))}
                 </div>
             )}

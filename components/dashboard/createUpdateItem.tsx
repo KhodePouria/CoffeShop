@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
@@ -8,7 +8,7 @@ import {
   updateItemSchema,
   type ItemFormInput,
   type ItemFormValues,
-} from "../validations"
+} from "../../app/dashboard/items/actions/schema"
 import { CategoryModel, ProductModel } from "@/api/Api"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -41,7 +41,7 @@ import { Pencil, Plus, X } from "lucide-react"
 import SelectImages from "@/components/SelectImages"
 import Image from "next/image"
 import { serveImage } from "@/lib/utils"
-import { addItem } from "../items/actions/actions"
+import { addItem, updateItem } from "../../app/dashboard/items/actions/actions"
 import { toast } from "sonner"
 
 interface CreateUpdateItemDialogProps {
@@ -49,7 +49,8 @@ interface CreateUpdateItemDialogProps {
   triggerLabel: string
   triggerVariant?: "default" | "outline" | "secondary" | "destructive"
   onSubmit?: (values: ItemFormValues, itemId?: string) => Promise<void> | void
-  categories: CategoryModel[]
+  categories: CategoryModel[],
+  className?: string
 }
 
 export function CreateUpdateItemDialog({
@@ -58,6 +59,7 @@ export function CreateUpdateItemDialog({
   triggerVariant = "default",
   onSubmit,
   categories,
+  className
 }: CreateUpdateItemDialogProps) {
   const schema = item ? updateItemSchema : createItemSchema
   const defaultValues = useMemo<ItemFormInput>(
@@ -66,19 +68,39 @@ export function CreateUpdateItemDialog({
       price: item?.price ?? 0,
       category: item?.categoryId ?? "",
       description: item?.description ?? "",
-      image: "",
+      image: item?.imageUrl ?? "",
       isActive: item?.isActive ?? true,
     }),
     [item],
   )
-
+  const [isOpen, setIsOpen] = useState(false)
   const form = useForm<ItemFormInput>({
     resolver: zodResolver(schema),
     defaultValues,
   })
 
   const handleSubmit = async (values: ItemFormInput) => {
-
+    if (item?.id) {
+      const result = await updateItem({
+        where: { id: item.id },
+        data: {
+          imageUrl: values.image,
+          categoryId: values.category,
+          isActive: values.isActive,
+          price: values.price,
+          title: values.name,
+          description: values.description
+        }
+      })
+      if (!result.error) {
+        toast.success("آیتم با موفقیت اضافه شد")
+        setIsOpen(false)
+        return
+      } else {
+        toast.error("مشکلی در اضافه کردن آیتم پیش آمد")
+        return
+      }
+    }
     const results = await addItem({
       imageUrl: values.image,
       categoryId: values.category,
@@ -89,6 +111,7 @@ export function CreateUpdateItemDialog({
     })
     if (!results.error) {
       toast.success("آیتم با موفقیت اضافه شد")
+      setIsOpen(false)
       return
     } else {
       toast.error("مشکلی در اضافه کردن آیتم پیش آمد")
@@ -96,9 +119,9 @@ export function CreateUpdateItemDialog({
   }
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant={triggerVariant}>{triggerLabel}</Button>
+        <Button variant={triggerVariant} className={`${className}`}>{triggerLabel}</Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-2xl mx-auto sm:mx-auto max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
@@ -172,15 +195,15 @@ export function CreateUpdateItemDialog({
                           <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
-                        {categories.length === 0 ? (
+                      <SelectContent dir="rtl">
+                        {categories?.length === 0 ? (
                           <div dir="rtl" className="px-3 py-4 text-center text-sm text-muted-foreground">
                             دسته‌بندی‌ای وجود ندارد.
                             <br />
                             <span className="text-xs">ابتدا یک دسته‌بندی ایجاد کنید.</span>
                           </div>
                         ) : (
-                          categories.map((cat) => (
+                          categories?.map((cat) => (
                             <SelectItem key={cat.id} value={cat.id}>
                               {cat.name}
                             </SelectItem>

@@ -2,7 +2,6 @@
 
 import type React from "react"
 import Image from "next/image"
-import type { MenuItem } from "@/lib/types"
 import { Heart } from "lucide-react"
 import { useFavourites } from "@/lib/favourites-store"
 import { Button } from "@/components/ui/button"

@@ -24,16 +24,13 @@ export default async function HomePage() {
 
             {isEmpty ? (
                 <div className="flex flex-col items-center justify-center min-h-[70vh] px-6 text-center">
-                    {/* Icon */}
                     <div className="relative mb-6">
                         <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center">
                             <Coffee className="w-10 h-10 text-muted-foreground" strokeWidth={1.5} />
                         </div>
-                        {/* Subtle glow ring */}
                         <div className="absolute inset-0 rounded-full bg-primary/10 blur-xl -z-10 scale-150" />
                     </div>
 
-                    {/* Text */}
                     <h2 className="text-xl font-semibold text-foreground mb-2">
                         منو در حال آماده‌سازی است
                     </h2>
@@ -43,7 +40,6 @@ export default async function HomePage() {
                         لطفاً کمی صبر کنید.
                     </p>
 
-                    {/* Decorative dots */}
                     <div className="flex gap-1.5 mt-8">
                         <span className="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:0ms]" />
                         <span className="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:150ms]" />

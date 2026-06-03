@@ -1,4 +1,3 @@
-// app/dashboard/category/components/CreateUpdateCategoryDialog.tsx
 "use client"
 
 import { useMemo, useState } from "react"
@@ -7,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import {
     createCategorySchema,
     type CategoryFormInput,
-} from "@/app/dashboard/category/schema"
+} from "@/app/dashboard/category/actions/schema"
 import { CategoryModel } from "@/api/Api"
 import { Button } from "@/components/ui/button"
 import {
@@ -76,14 +75,7 @@ export function CreateUpdateCategoryDialog({
                     icon: values.icon,
                 }
             })
-            console.log({
-                where: { id: category.id },
-                data: {
-                    name: values.name,
-                    slug: values.slug,
-                    icon: values.icon,
-                }
-            })
+            setOpen(false)
             if (!result.error) {
                 toast.success("دسته بندی با موفقیت تغییر یافت")
                 return
@@ -92,6 +84,7 @@ export function CreateUpdateCategoryDialog({
             }
         } else {
             const result = await createCategory(values)
+            setOpen(false)
             if (!result.error) {
                 toast.success("دسته بندی با موفقیت اضافه شد")
                 return
@@ -112,7 +105,7 @@ export function CreateUpdateCategoryDialog({
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="text-muted-foreground hover:text-foreground"
+                        className="text-muted-foreground hover:text-foreground hover:bg-primary/20!"
                         aria-label={triggerLabel}
                     >
                         <Pencil className="w-4 h-4" />

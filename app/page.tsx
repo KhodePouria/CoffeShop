@@ -8,7 +8,6 @@ import { ChevronLeft, Phone } from "lucide-react";
 export default function WelcomePage() {
   return (
     <main className="relative min-h-screen w-full flex flex-col justify-end pb-16 items-center overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/welcome_bg.jpg"
@@ -17,12 +16,10 @@ export default function WelcomePage() {
           priority
           className="object-cover object-center scale-105"
         />
-        {/* Layered gradient for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/90" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
       </div>
 
-      {/* Decorative top badge */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -34,28 +31,23 @@ export default function WelcomePage() {
         </span>
       </motion.div>
 
-      {/* Content */}
       <div className="relative z-10 w-full max-w-sm px-6 flex flex-col items-center gap-10">
 
-        {/* Title block */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-center text-center gap-4"
         >
-          {/* Logo / name */}
           <div className="relative">
             <h1 className="text-7xl font-extrabold text-white tracking-tight leading-none">
               کافه{" "}
               <span className="relative inline-block text-primary">
                 دا
-                {/* Glow under the accent word */}
                 <span className="absolute -bottom-1 left-0 right-0 h-px bg-primary/60 blur-sm" />
               </span>
             </h1></div>
 
-          {/* Divider */}
           <div className="flex items-center gap-3 w-40">
             <div className="flex-1 h-px bg-white/20" />
             <div className="w-1 h-1 rounded-full bg-primary/70" />
@@ -65,7 +57,6 @@ export default function WelcomePage() {
           </p>
         </motion.div>
 
-        {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -87,7 +78,6 @@ export default function WelcomePage() {
           </Link>
         </motion.div>
 
-        {/* Bottom hint */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
