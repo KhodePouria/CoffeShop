@@ -65,7 +65,7 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
                   {item.title}
                 </DrawerTitle>
                 <span className="text-xl font-semibold text-primary/90" dir="ltr">
-                  {toPersianDigits(item.price.toFixed(3))} تومان
+                  {toPersianDigits(item.price)} <span className="text-xs font-medium text-muted-foreground mr-0.5">تومان</span>
                 </span>
               </div>
             </DrawerHeader>
