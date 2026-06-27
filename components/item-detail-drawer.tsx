@@ -5,7 +5,7 @@ import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/u
 import { Button } from "@/components/ui/button"
 import { Heart, X } from "lucide-react"
 import { useFavourites } from "@/lib/favourites-store"
-import { serveImage, toPersianDigits } from "@/lib/utils"
+import { formatPersianPrice, serveImage } from "@/lib/utils"
 import { ProductModel } from "@/api/Api"
 
 interface ItemDetailDrawerProps {
@@ -28,6 +28,7 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
       addFavourite(item.id)
     }
   }
+
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
@@ -64,8 +65,8 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
                 <DrawerTitle className="text-2xl sm:text-3xl font-bold text-foreground leading-snug">
                   {item.title}
                 </DrawerTitle>
-                <span className="text-xl font-semibold text-primary/90" dir="ltr">
-                  {toPersianDigits(item.price)} <span className="text-xs font-medium text-muted-foreground mr-0.5">تومان</span>
+                <span className="text-xl font-semibold text-primary/90" >
+                  {formatPersianPrice(item.price)} <span className="text-xs font-medium text-muted-foreground mr-0.5">تومان</span>
                 </span>
               </div>
             </DrawerHeader>
