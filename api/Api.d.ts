@@ -265,22 +265,21 @@ export interface ReadImageInput {
 }
 export interface ObjectMetadata {
   id: string;
-  fieldname: string | null;
-  originalname: string | null;
-  encoding: string | null;
-  mimetype: string | null;
-  /** @format int64 */
-  size: number | null;
-  destination: string | null;
-  filename: string | null;
-  path: string | null;
+  fieldname: object | null;
+  originalname: object | null;
+  encoding: object | null;
+  mimetype: object | null;
+  size: object | null;
+  destination: object | null;
+  filename: object | null;
+  path: object | null;
   features: object;
   objectId: string;
 }
 export interface ObjectModel {
   id: string;
-  bucketId: string;
-  name: string | null;
+  bucketId: object;
+  name: object | null;
   /** @format date-time */
   createdAt: string;
   /** @format date-time */

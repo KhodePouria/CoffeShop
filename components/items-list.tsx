@@ -75,7 +75,7 @@ export function DashboardItemsList({ items, categories }: { items: ProductModel[
                       {item.title}
                     </h3>
                     <span className="text-white font-bold text-lg whitespace-nowrap  drop-shadow-md" dir="rtl">
-                      {formatPersianPrice(item.price)}
+                      {formatPersianPrice(item.price)} <span className="text-xs font-medium text-foreground mr-0.5">تومان</span>
                     </span>
                   </div>
 

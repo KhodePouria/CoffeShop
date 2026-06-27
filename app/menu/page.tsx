@@ -22,7 +22,7 @@ export default async function HomePage() {
                 </div>
             </header>
 
-            {isEmpty ? (
+            {isEmpty || !menuResults ? (
                 <div className="flex flex-col items-center justify-center min-h-[70vh] px-6 text-center">
                     <div className="relative mb-6">
                         <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center">

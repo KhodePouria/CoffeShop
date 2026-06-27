@@ -27,5 +27,5 @@ export function formatPersianPrice(price: number): string {
   const formattedWithCommas = tomanValue.toLocaleString("en-US");
 
   const persianNum = toPersianDigits(formattedWithCommas);
-  return `${persianNum} تومان`;
+  return `${persianNum} `;
 }

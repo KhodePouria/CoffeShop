@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import type { MenuItem } from "@/lib/types"
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { Heart, X } from "lucide-react"
@@ -34,14 +33,12 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent className="max-w-2xl mx-auto w-full border-none bg-background backdrop-blur-xl shadow-2xl rounded-t-[2rem]! overflow-hidden">
 
-        {/* Floating Custom Handle on top of the image */}
         <div className="absolute top-3 left-1/2 -translate-x-1/2 z-50 h-1.5 w-12 rounded-full bg-white/60 backdrop-blur-md shadow-sm" />
 
-        {/* Floating Frosted Close Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="absolute top-4 right-4 z-50 h-10 w-10 rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/40 hover:scale-105 transition-all duration-300"
+          className="absolute top-4 right-4 z-50 h-10 w-10 rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-white/80! hover:scale-105 transition-all duration-300"
           onClick={() => onOpenChange(false)}
         >
           <X className="h-5 w-5" />
@@ -49,7 +46,6 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
 
         <div className="relative flex flex-col h-full max-h-[85vh]">
 
-          {/* Image Section completely flush to the top */}
           <div className="relative h-[35vh] min-h-[250px] w-full shrink-0">
             <Image
               src={serveImage(item.imageUrl || '') || "/placeholder.svg"}
@@ -58,12 +54,10 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
               className="object-cover"
               priority
             />
-            {/* Gradient mask to blend image into background */}
             <div className="absolute inset-0 bg-gradient-to-t -mb-1 from-background via-background/70 to-transparent" />
 
           </div>
 
-          {/* Content Section */}
           <div className="flex flex-col flex-1 px-6 pb-8 -mt-6 relative z-10 overflow-y-auto scrollbar-hide">
             <DrawerHeader className="p-0 mb-4 text-start">
               <div className="flex flex-col gap-2">
@@ -80,7 +74,6 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
               {item.description}
             </p>
 
-            {/* Sticky-feeling Action Area */}
             <div className="mt-auto pt-4 flex gap-3 items-center w-full">
               <Button
                 variant="outline"
@@ -97,12 +90,10 @@ export function ItemDetailDrawer({ item, open, onOpenChange }: ItemDetailDrawerP
                 />
               </Button>
 
-              {/* Phone Order Button */}
               <Button
                 asChild
                 className="flex-1 h-14 rounded-full text-lg  text-primary-foreground font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] transition-all duration-300"
               >
-                {/* Replace the number below with your actual phone number */}
                 <a href="tel:02112345678">
                   تماس برای سفارش
                 </a>

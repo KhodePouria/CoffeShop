@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Heart } from "lucide-react"
 import { useFavourites } from "@/lib/favourites-store"
 import { Button } from "@/components/ui/button"
-import { serveImage, toPersianDigits } from "@/lib/utils"
+import { formatPersianPrice, serveImage, toPersianDigits } from "@/lib/utils"
 import { ProductModel } from "@/api/Api"
 
 interface MenuItemCardProps {
@@ -59,11 +59,11 @@ export function MenuItemCard({ item, onClick }: MenuItemCardProps) {
       <div className="p-4 pt-5 pb-3">
         <div className="flex flex-col gap-1.5">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="font-bold text-lg leading-tight line-clamp-1 min-w-0 tracking-tight text-foreground/90">
+            <h3 className="font-bold text-lg leading-tight line-clamp-2 min-w-0 tracking-tight text-foreground/90">
               {item.title}
             </h3>
             <span className="text-foreground font-bold text-lg whitespace-nowrap tracking-tighter" dir="rtl">
-              {toPersianDigits(item.price.toFixed(3))} <span className="text-xs font-medium text-muted-foreground mr-0.5">تومان</span>
+              {toPersianDigits(formatPersianPrice(item.price))} <span className="text-xs font-medium text-muted-foreground mr-0.5">تومان</span>
             </span>
           </div>
           <p className="text-sm text-muted-foreground/60 line-clamp-2 leading-relaxed font-medium">

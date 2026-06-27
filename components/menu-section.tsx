@@ -1,6 +1,5 @@
 "use client"
 
-import type { MenuItem } from "@/lib/types"
 import { MenuItemCard } from "./menu-item-card"
 import { ProductModel } from "@/api/Api"
 
